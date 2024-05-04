@@ -10,12 +10,13 @@ namespace otusHomeWorkPrototype.TestClass.Transport
 {
     public class AutoClass : Transport
     {
+        //Машины
+
         public string Brand { get; set; }
 
-        public AutoClass(decimal speed, string brand)
+        public AutoClass()
         {
-            Speed = speed;
-            Brand = brand;
+
         }
 
         public override object Clone()
@@ -23,7 +24,7 @@ namespace otusHomeWorkPrototype.TestClass.Transport
             return DeepClone();
         }
 
-        public override Transport DeepClone()
+        public override AutoClass DeepClone()
         {
             var serialized = JsonSerializer.Serialize(this);
             var copy = JsonSerializer.Deserialize<AutoClass>(serialized);
@@ -31,9 +32,9 @@ namespace otusHomeWorkPrototype.TestClass.Transport
             return copy;
         }
 
-        public override Transport ShallowClone()
+        public override AutoClass ShallowClone()
         {
-            throw new NotImplementedException();
+            return (AutoClass)MemberwiseClone();
         }
     }
 }

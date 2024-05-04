@@ -8,6 +8,8 @@ namespace otusHomeWorkPrototype.TestClass.Transport
 {
     public class Airplane : Transport
     {
+        //Самолеты
+
         public override object Clone()
         {
             throw new NotImplementedException();

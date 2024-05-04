@@ -1,10 +1,31 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 
 namespace otusHomeWorkPrototype.TestClass.Documents
 {
+    //счет-фактура с датой  и № документа
+    //BankDetails реквизиты банка
+    //PaymentDocumentClass Реквизиты платежного поручения
+
+    [Serializable]
     public class InvoiceClass : DocumentClass
     {
         public PaymentDocumentClass PaymentDocument { get; set; }
+        public BankDetails BankDetails { get; set; }
+
+        public InvoiceClass()
+        {
+            PaymentDocument = new PaymentDocumentClass
+            {
+                DateDocument = DateTime.Now.ToShortDateString(),
+                NumDocument = "1"
+            };
+
+            BankDetails = new BankDetails
+            {
+                Name = "AlfaOmegaBank",
+            };
+        }
 
         public override InvoiceClass ShallowClone()
         {
@@ -23,5 +44,14 @@ namespace otusHomeWorkPrototype.TestClass.Documents
         {
             return DeepClone();
         }
+
+
+        public void PrintDetails() =>
+            Console.WriteLine(
+                $"\nNumDocument: {NumDocument}" +
+                $"\nDateDocument: {DateDocument}" +
+                $"\nPaymentDocument Num: {PaymentDocument.NumDocument}" +
+                $"\nPaymentDocument Date: {PaymentDocument.DateDocument}" +
+                $"\nBank Name: {BankDetails.Name}");
     }
 }

@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace otusHomeWorkPrototype.TestClass.Transport
 {
+    [Serializable]
     public class Ship : Transport
     {
+        //Класс корабль
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override object Clone()
         {
-            throw new NotImplementedException();
+            return DeepClone();
         }
 
-        public override Transport DeepClone()
+        public override Ship DeepClone()
         {
-            throw new NotImplementedException();
+            var serialized = JsonSerializer.Serialize(this);
+            var copy = JsonSerializer.Deserialize<Ship>(serialized);
+
+            return copy;
         }
 
         public override Transport ShallowClone()
         {
-            throw new NotImplementedException();
+            return (Transport)MemberwiseClone();
         }
     }
 }

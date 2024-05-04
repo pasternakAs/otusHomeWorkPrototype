@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace otusHomeWorkPrototype.TestClass.Documents
 {
+    //Накладная с датой и номером документа 
+
     public class WaybillClass : DocumentClass
     {
         public WaybillClass()
